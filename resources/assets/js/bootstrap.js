@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 window._ = require('lodash');
 
@@ -20,8 +22,11 @@ try {
  */
 
 window.axios = require('axios');
-
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+window.Vue = Vue;
+Vue.use(VueRouter);
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

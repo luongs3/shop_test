@@ -2,23 +2,23 @@
 //Client
 Route::group(['domain' => env('CLIENT_DOMAIN')], function() {
     Route::get('/', function () {
-        return view('teacher.index');
+        return view('client.index');
     });
 
     Route::group(['namespace' => 'Client'], function () {
-        Route::get('auth', 'Auth\SessionsController@index')->name('teacher.auth');
-        Route::post('login', 'Auth\SessionsController@store')->name('teacher.login');
-        Route::get('logout', 'Auth\SessionsController@logout')->name('teacher.logout');
+        Route::get('auth', 'Auth\SessionsController@index')->name('client.auth');
+        Route::post('login', 'Auth\SessionsController@store')->name('client.login');
+        Route::get('logout', 'Auth\SessionsController@logout')->name('client.logout');
 
         Route::post('avatar', 'Auth\ProfileController@updateAvatar');
         Route::post('background', 'Auth\ProfileController@updateBackground');
-        Route::get('show/{teacher?}', 'Auth\ProfileController@show')->name('teacher.show');
-        Route::post('update', 'Auth\ProfileController@updateProfile')->name('teacher.update');
-        Route::post('password', 'Auth\PasswordController@store')->name('teacher.password.save');
-        Route::post('password/email', 'Auth\PasswordController@postEmail')->name('teacher.password.email');
-        Route::post('password/reset', 'Auth\PasswordController@postReset')->name('teacher.password.reset');
-        Route::post('password/change', 'Auth\ProfileController@update')->name('teacher.password.change');
-        Route::get('teachers', 'TeacherController@index');
+        Route::get('show/{client?}', 'Auth\ProfileController@show')->name('client.show');
+        Route::post('update', 'Auth\ProfileController@updateProfile')->name('client.update');
+        Route::post('password', 'Auth\PasswordController@store')->name('client.password.save');
+        Route::post('password/email', 'Auth\PasswordController@postEmail')->name('client.password.email');
+        Route::post('password/reset', 'Auth\PasswordController@postReset')->name('client.password.reset');
+        Route::post('password/change', 'Auth\ProfileController@update')->name('client.password.change');
+        Route::get('clients', 'TeacherController@index');
         Route::group(['prefix' => 'notifications'], function () {
             Route::get('/', 'NotificationController@index');
             Route::post('clear', 'NotificationController@clear');
