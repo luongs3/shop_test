@@ -9,5 +9,6 @@ export default new Router({
             name: 'Example',
             component: Example
         }
-    ]
+    ],
+    mode: 'history',
 })

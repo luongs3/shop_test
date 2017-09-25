@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <img src="images/home/logo.png">
-    <router-link :to="{ name: '/', params: {} }">Home</router-link>
-    <router-link :to="{ name: '/example', params: {} }">Go To Example</router-link>
+    <router-link to='/'>Home</router-link>
+    <router-link :to="{ name: 'Example', params: {} }">Go To Example</router-link>
 
     <!-- components matched link will be rendered here -->
     <router-view></router-view>

@@ -44967,11 +44967,9 @@ var render = function() {
     [
       _c("img", { attrs: { src: "images/home/logo.png" } }),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "/", params: {} } } }, [
-        _vm._v("Home")
-      ]),
+      _c("router-link", { attrs: { to: "/" } }, [_vm._v("Home")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "/example", params: {} } } }, [
+      _c("router-link", { attrs: { to: { name: "Example", params: {} } } }, [
         _vm._v("Go To Example")
       ]),
       _vm._v(" "),
@@ -45006,10 +45004,11 @@ if (false) {
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: [{
-        path: '/',
+        path: '/example',
         name: 'Example',
         component: __WEBPACK_IMPORTED_MODULE_2_comps_Example___default.a
-    }]
+    }],
+    mode: 'history'
 }));
 
 /***/ }),
