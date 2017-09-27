@@ -4,8 +4,8 @@
     <router-link to='/'>Home</router-link>
     <router-link :to="{ name: 'Example', params: {} }">Go To Example</router-link>
 
-    <!-- components matched link will be rendered here -->
     <router-view></router-view>
+    <!-- components matched link will be rendered here -->
   </div>
 </template>
 
