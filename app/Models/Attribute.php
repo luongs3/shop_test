@@ -1,36 +1,21 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Attribute extends Model
 {
-    use Notifiable, SoftDeletes;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'id',
-        'email',
-        'avatar',
-        'password',
-        'is_super',
-        'is_active',
-        'reset_token',
+        'name',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function attributeValues()
+    {
+        return $this->hasMany(AttributeValue::class);
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(AttributeProduct::class, 'attribute_product');
+    }
 }

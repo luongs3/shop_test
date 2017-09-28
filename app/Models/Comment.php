@@ -3,22 +3,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Comment extends Model
 {
     protected $fillable = [
-    	'name',
-    	'sku',
+        'user_id',
         'ancestor_id',
+        'commentable_id',
+        'commentable_type',// post, product, comment
+        'active', //0-inactive, 1-active
+        'content',
     ];
 
-    public function products()
+    public function user()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function getRouteKeyName()
+    public function commentable()
     {
-        return 'sku';
+        return $this->morphTo();
     }
 
     public function ancestor()
@@ -30,5 +33,4 @@ class Category extends Model
     {
         return $this->hasMany(static::class, 'ancestor_id');
     }
-
 }

@@ -25,7 +25,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Models\User::class, function (Faker $faker) {
+$factory->define(App\Models\Admin::class, function (Faker $faker) {
     static $password;
 
     return [
@@ -34,5 +34,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
         'avatar' => $faker->text('images/user/default-avatar.png'),
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'is_super' => $faker->randomElement([0,1]),
+        'is_active' => $faker->randomElement([0,1]),
     ];
 });

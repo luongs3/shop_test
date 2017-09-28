@@ -2,13 +2,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
 
-class Admin
+class Admin extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'id',
         'email',
         'avatar',
         'password',

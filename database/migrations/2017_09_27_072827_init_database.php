@@ -18,8 +18,8 @@ class InitDatabase extends Migration
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
             $table->text('password');
-            $table->boolean('is_super')->default(0);
-            $table->boolean('is_active')->default(1);
+            $table->unsignedTinyInteger('is_super')->default(0);
+            $table->unsignedTinyInteger('is_active')->default(1);
             $table->string('reset_token', 64)->nullable();
             $table->rememberToken();
             $table->softDeletes();
@@ -30,7 +30,7 @@ class InitDatabase extends Migration
             $table->increments('id')->unsigned();
             $table->string('name')->nullable();
             $table->string('sku')->unique();
-            $table->unsignedInteger('parent_category_id')->default(0);
+            $table->unsignedInteger('ancestor_id');
             $table->timestamps();
         });
 
@@ -57,20 +57,39 @@ class InitDatabase extends Migration
             $table->timestamps();
         });
 
-        Schema::create('attribute_products', function ($table) {
+        Schema::create('attribute_product', function ($table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('attribute_id');
             $table->timestamps();
         });
 
-        Schema::create('attribute_values', function ($table) {
+        Schema::create('attribute_value', function ($table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('attributes_id');
             $table->string('value')->unique();
             $table->timestamps();
         });
 
+        Schema::create('posts', function ($table) {
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedSmallInteger('active')->default(1); //0-inactive, 1-active
+            $table->string('featured_image');
+            $table->string('title');
+            $table->longText('content');
+            $table->timestamps();
+        });
+
+        Schema::create('comments', function ($table) {
+            $table->increments('id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('commentable_id');
+            $table->string('commentable_type'); //'post', 'product'
+            $table->unsignedSmallInteger('active')->default(1); //0-inactive, 1-active
+            $table->text('content');
+            $table->timestamps();
+        });
 
         // Schema::create('invoices', function ($table) {
         //     $table->increments('id')->unsigned();
@@ -118,7 +137,9 @@ class InitDatabase extends Migration
         Schema::drop('categories');
         Schema::drop('products');
         Schema::drop('attributes');
-        Schema::drop('attribute_products');
-        Schema::drop('attribute_values');
+        Schema::drop('attribute_product');
+        Schema::drop('attribute_value');
+        Schema::drop('posts');
+        Schema::drop('comments');
     }
 }

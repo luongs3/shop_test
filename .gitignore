@@ -19,3 +19,4 @@ coverages
 .DS_Store
 .framgia-ci-reports
 .framgia-ci-result.temp.yml
+.phpintel
