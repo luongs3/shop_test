@@ -9,7 +9,6 @@ class Product extends Model
         'name',
         'sku',
         'description',
-        'attribute_id',
         'status',
         'category_id',
         'price',
@@ -42,7 +41,7 @@ class Product extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(AttributeProduct::class, 'attribute_product');
+        return $this->belongsToMany(AttributeProduct::class, 'attribute_products');
     }
 
     public function comments()

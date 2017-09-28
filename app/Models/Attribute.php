@@ -16,6 +16,6 @@ class Attribute extends Model
 
     public function products()
     {
-        return $this->belongsToMany(AttributeProduct::class, 'attribute_product');
+        return $this->belongsToMany(AttributeProduct::class, 'attribute_products');
     }
 }

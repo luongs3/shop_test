@@ -9,6 +9,7 @@ class Admin extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'name',
         'email',
         'avatar',
         'password',
