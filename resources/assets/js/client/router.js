@@ -11,4 +11,5 @@ export default new Router({
             component: Example
         },
     ],
+    linkActiveClass: 'active',
 })
