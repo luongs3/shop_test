@@ -20,6 +20,7 @@ mix.js('resources/assets/js/client/client.js', 'public/js/client.js')
     // .sass('resources/assets/sass/admin.scss', 'public/css/admin.css')
     .sass('resources/assets/sass/client.scss', 'public/css/client.css')
     .sass('resources/assets/sass/app.scss', 'public/css/app.css')
+    .copyDirectory('node_modules/font-awesome/fonts', 'public/fonts')
     .webpackConfig({
         resolve: {
             alias: {
@@ -33,4 +34,7 @@ mix.js('resources/assets/js/client/client.js', 'public/js/client.js')
             ]
         }
     })
-    .browserSync('shop.dev');
+    .browserSync('shop.dev')
+    .options({
+       processCssUrls: false
+    });

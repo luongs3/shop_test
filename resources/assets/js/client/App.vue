@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <img src="images/home/logo.png">
+    <my-header></my-header>
     <router-link to='/'>Home</router-link>
-    <router-link :to="{ name: 'Example', params: {} }">Go To Example</router-link>
-
+    <router-link to='/example'>Example</router-link>
     <router-view></router-view>
-    <!-- components matched link will be rendered here -->
+    <!-- components matched link will be rendered her e -->
   </div>
 </template>
 
 <script>
-    export default {
-        name: 'app'
-    }
+  import MyHeader from 'comps/header';
+  export default {
+      components: {
+        MyHeader,
+      },
+  }
 </script>
 
 <style>
@@ -22,6 +24,5 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    margin-top: 60px;
 }
 </style>

@@ -13,6 +13,7 @@ yarn-error.log
 public/build
 public/css
 public/js
+public/fonts
 .docker
 coverages
 .docker
