@@ -6,35 +6,8 @@ Route::group(['domain' => env('CLIENT_DOMAIN')], function() {
     });
 
     Route::group(['namespace' => 'Client'], function () {
-        Route::get('auth', 'Auth\SessionsController@index')->name('client.auth');
-        Route::post('login', 'Auth\SessionsController@store')->name('client.login');
-        Route::get('logout', 'Auth\SessionsController@logout')->name('client.logout');
-
-        Route::post('avatar', 'Auth\ProfileController@updateAvatar');
-        Route::post('background', 'Auth\ProfileController@updateBackground');
-        Route::get('show/{client?}', 'Auth\ProfileController@show')->name('client.show');
-        Route::post('update', 'Auth\ProfileController@updateProfile')->name('client.update');
-        Route::post('password', 'Auth\PasswordController@store')->name('client.password.save');
-        Route::post('password/email', 'Auth\PasswordController@postEmail')->name('client.password.email');
-        Route::post('password/reset', 'Auth\PasswordController@postReset')->name('client.password.reset');
-        Route::post('password/change', 'Auth\ProfileController@update')->name('client.password.change');
-        Route::get('clients', 'TeacherController@index');
-        Route::group(['prefix' => 'notifications'], function () {
-            Route::get('/', 'NotificationController@index');
-            Route::post('clear', 'NotificationController@clear');
-            Route::put('{notification}', 'NotificationController@update');
-        });
-
-        Route::group(['prefix' => 'activities'], function () {
-            Route::get('{courseClass}', 'ActivityController@getActivitiesOfClass')
-                ->name('activities.getActivitiesOfClass');
-            Route::post('{courseClass}/comment', 'ActivityController@storeComment')
-                ->name('admin.storeComment');
-            Route::post('{courseClass}/comment/{comment}', 'ActivityController@updateComment')
-                ->name('admin.updateComment');
-            Route::post('{courseClass}/comment/{comment}/delete', 'ActivityController@deleteComment')
-                ->name('admin.deleteComment');
-        });
+        Route::resource('categories', 'CategoryController', ['only' => ['index', 'show']]);
+        Route::resource('products', 'ProductController', ['only' => ['index', 'show']]);
     });
 });
 
