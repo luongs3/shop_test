@@ -27,7 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
 
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'email' => $faker->safeEmail,
         'avatar' => 'images/user/default-avatar.png',
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
@@ -50,7 +50,7 @@ $factory->define(Admin::class, function (Faker $faker) {
 
 $factory->define(Category::class, function (Faker $faker) {
     return [
-        'name' => $faker->text(),
+        'name' => $faker->sentence(),
         'sku' => $faker->unique()->slug(),
         'ancestor_id' => 0,
     ];

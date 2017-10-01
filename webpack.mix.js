@@ -27,7 +27,8 @@ mix.js('resources/assets/js/client/client.js', 'public/js/client.js')
                 assets: path.join(__dirname, 'resources/assets/js'),
                 comps: path.join(__dirname, 'resources/assets/js/components'),
                 admin: path.join(__dirname, 'resources/assets/js/admin'),
-                client: path.join(__dirname, 'resources/assets/js/client')
+                client: path.join(__dirname, 'resources/assets/js/client'),
+                api: path.join(__dirname, 'resources/assets/js/api'),
             },
             modules: [
                 path.resolve(__dirname, 'node_modules')

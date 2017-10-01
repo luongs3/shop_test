@@ -9,7 +9,7 @@ class CategoryController extends Controller
     protected $guard = 'client';
 
     public function index() {
-        $categories = Category::get();
+        $categories = Category::get()->load('descendants');
 
         return [
             'categories' => $categories,
