@@ -8,7 +8,8 @@
             </div>
 
             <div class="col-sm-9 padding-right">
-                <!-- main section -->
+                <!-- main content -->
+                <main-content :featured-products="data.featuredProducts"></main-content>
             </div>
         </div>
     </div>
@@ -16,7 +17,8 @@
 </template>
 
 <script>
-    import LeftSidebar from 'comps/left-sidebar';
+    import LeftSidebar from 'comps/left-sidebar'
+    import MainContent from 'comps/content'
 
     export default {
         props: {
@@ -24,6 +26,7 @@
         },
         components: {
             LeftSidebar,
+            MainContent,
         }
     }
 </script>

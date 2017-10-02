@@ -52,7 +52,7 @@ $factory->define(Category::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence(),
         'sku' => $faker->unique()->slug(),
-        'ancestor_id' => 0,
+        'ancestor_id' => null,
     ];
 });
 

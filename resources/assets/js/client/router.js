@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from 'client/pages/Home'
 import Category from 'client/pages/Category'
 import Categories from 'client/pages/Categories'
-import Example from 'comps/Example'
+import Product from 'client/pages/Product'
 
 export default new Router({
     mode: 'history',
@@ -14,11 +14,6 @@ export default new Router({
             component: Home
         },
         {
-            path: '/example',
-            name: 'example',
-            component: Example
-        },
-        {
             path: '/categories',
             name: 'categories',
             component: Categories
@@ -27,6 +22,11 @@ export default new Router({
             path: '/categories/:sku',
             name: 'category',
             component: Category
+        },
+        {
+            path: '/products/:sku',
+            name: 'product',
+            component: Product
         },
     ],
     linkActiveClass: 'active',

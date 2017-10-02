@@ -31,7 +31,7 @@ class InitDatabase extends Migration
             $table->increments('id')->unsigned();
             $table->string('name')->nullable();
             $table->string('sku')->unique();
-            $table->unsignedInteger('ancestor_id');
+            $table->unsignedInteger('ancestor_id')->nullable();
             $table->timestamps();
         });
 
@@ -41,7 +41,7 @@ class InitDatabase extends Migration
             $table->string('sku')->unique();
             $table->text('description')->nullable();
             $table->unsignedSmallInteger('status')->default(1); //1- on-sale, 2-run out of stock, 3-disable
-            $table->unsignedInteger('category_id')->default(0);
+            $table->unsignedInteger('category_id');
             $table->decimal('price', 10, 0);
             $table->decimal('sale_price', 10, 0)->nullable();
             $table->unsignedSmallInteger('sale_off')->default(0);
@@ -84,7 +84,7 @@ class InitDatabase extends Migration
         Schema::create('comments', function ($table) {
             $table->increments('id')->unsigned();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('ancestor_id');
+            $table->unsignedInteger('ancestor_id')->nullable();
             $table->unsignedInteger('commentable_id');
             $table->string('commentable_type'); //'post', 'product'
             $table->unsignedSmallInteger('active')->default(1); //0-inactive, 1-active
@@ -138,8 +138,8 @@ class InitDatabase extends Migration
         Schema::drop('categories');
         Schema::drop('products');
         Schema::drop('attributes');
-        Schema::drop('attribute_product');
-        Schema::drop('attribute_value');
+        Schema::drop('attribute_products');
+        Schema::drop('attribute_values');
         Schema::drop('posts');
         Schema::drop('comments');
     }

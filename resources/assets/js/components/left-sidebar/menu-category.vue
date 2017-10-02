@@ -16,9 +16,6 @@
         },
         components: {
             MyPanel,
-        },
-        mounted() {
-            console.log('menu-category');
         }
     }
 </script>

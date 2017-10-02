@@ -3,30 +3,23 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <router-link :to="{
-                    name: 'category',
-                    params: {sku: category.sku}
-                }">
-                    {{ category.name }}
-                </router-link>
-                <a
-                    data-toggle="collapse"
-                    data-parent="#accordian"
-                    :href="'#' . category.sku"
-                    class="badge pull-right"
-                >
-                    <i class="fa fa-plus"></i>
-                </a>
+                <div>
+                    <span class="badge pull-right">
+                        <a data-toggle="collapse" data-parent="#accordian" :href="`#${category.sku}`">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </span>
+                    <router-link :to="`/categories/${category.sku}`">
+                        {{ category.name }}
+                    </router-link>
+                </div>
             </h4>
         </div>
-        <div :id="'#' . category.sku" class="panel-collapse collapse">
+        <div :id="`${category.sku}`" class="panel-collapse collapse">
             <div class="panel-body">
                 <ul v-if="category.descendants.length">
                     <li v-for="item in category.descendants">
-                        <router-link :to="{
-                            name: 'category',
-                            params: {sku: item.sku}
-                        }">
+                        <router-link  :to="`/categories/${item.sku}`">
                             {{ item.name }}
                         </router-link>
                     </li>
@@ -43,8 +36,5 @@
             category: Object,
             required: true,
         },
-        mounted() {
-            console.log('category: ', category);
-        }
     }
 </script>

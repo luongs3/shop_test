@@ -3,7 +3,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <router-link v-if="category.sku" :to="{name: 'category', params: {category: category.sku}}">
+                    <router-link v-if="category.sku" :to="`/categories/${category.sku}`">
                         {{ category.name }}
                     </router-link>
                 </h4>

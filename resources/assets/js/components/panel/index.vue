@@ -1,6 +1,6 @@
 <template>
     <div id="my-panel">
-        <div clas="panel-list" v-if="categories.length" v-for="category in categories">
+        <div class="panel-list" v-if="categories.length" v-for="category in categories">
             <panel-multiple v-if="category.descendants.length" :category="category"></panel-multiple>
             <panel-one v-else :category="category"></panel-one>
         </div>
