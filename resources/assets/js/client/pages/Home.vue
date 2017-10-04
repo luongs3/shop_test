@@ -9,12 +9,14 @@
 import Slider from 'comps/slider';
 import MainSection from 'comps/main-section';
 import {getCategories} from 'api/category';
+import {getFeaturedProducts} from 'api/featured-product';
 
 export default {
     data() {
         return {
             data: {
                 categories: null,
+                featuredProducts: null,
             },
         }
     },
@@ -27,10 +29,14 @@ export default {
             getCategories(params).then(({ data }) => {
                 this.data.categories = data.categories
             })
+            getFeaturedProducts(params).then(({ data }) => {
+                this.data.featuredProducts = data.featuredProducts
+            })
         },
     },
-    beforeMount () {
+    created () {
         this.fetchAll(this.$route.query)
+        console.log('this.data: ', this.data);
     }
 }
 </script>

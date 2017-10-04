@@ -11,13 +11,17 @@
         props: {
             featuredProducts: {
                 type: Array,
-                validator (value) {
-                    return value.length > 0
-                }
+                // validator (value) {
+                //     return value.length > 0
+                // }
             },
         },
         components: {
             FeaturedProducts,
+        },
+
+        updated() {
+            console.log('content: featuredProducts: ', this.featuredProducts);
         }
     }
 </script>

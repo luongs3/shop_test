@@ -53,4 +53,14 @@ class Product extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function scopeIsFeatured($query)
+    {
+        return $query->where('featured', 1);
+    }
+
+    public function scopeIsNew($query)
+    {
+        return $query->where('new', 1);
+    }
 }

@@ -9,6 +9,8 @@
                 </a>
                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
             </div>
+            <img v-if="product.sale_off > 0" src="images/home/sale.png" class="new" atl="Sale" />
+            <img v-else-if="product.new" src="images/home/new.png" class="new" atl="Sale" />
             <!-- <div class="product-overlay">
                 <div class="overlay-content">
                     <h2>$56</h2>
@@ -29,7 +31,10 @@
 <script>
 
 export default {
-    props: ['product']
+    props: ['product'],
+    mounted() {
+        console.log('this.product: ', this.product);
+    }
 }
 </script>
 
