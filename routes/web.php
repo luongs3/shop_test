@@ -7,8 +7,11 @@ Route::group(['domain' => env('CLIENT_DOMAIN')], function() {
 
     Route::group(['namespace' => 'Client'], function () {
         Route::resource('categories', 'CategoryController', ['only' => ['index', 'show']]);
+        Route::resource('featured-categories', 'FeaturedCategoryController', ['only' => ['index']]);
+
         Route::resource('products', 'ProductController', ['only' => ['index', 'show']]);
         Route::resource('featured-products', 'FeaturedProductController', ['only' => ['index']]);
+        Route::resource('recommended-products', 'RecommendedProductController', ['only' => ['index']]);
     });
 });
 

@@ -8,8 +8,8 @@
 <script>
 import Slider from 'comps/slider';
 import MainSection from 'comps/main-section';
-import {getCategories} from 'api/category';
-import {getFeaturedProducts} from 'api/featured-product';
+import {getCategories, getFeaturedCategories} from 'api/category';
+import {getFeaturedProducts, getRecommendedProducts} from 'api/product';
 
 export default {
     data() {
@@ -17,6 +17,8 @@ export default {
             data: {
                 categories: null,
                 featuredProducts: null,
+                featuredCategories: null,
+                recommendedProducts: null,
             },
         }
     },
@@ -31,6 +33,12 @@ export default {
             })
             getFeaturedProducts(params).then(({ data }) => {
                 this.data.featuredProducts = data.featuredProducts
+            })
+            getRecommendedProducts(params).then(({ data }) => {
+                this.data.recommendedProducts = data.recommendedProducts
+            })
+            getFeaturedCategories(params).then(({ data }) => {
+                this.data.featuredCategories = data.featuredCategories
             })
         },
     },

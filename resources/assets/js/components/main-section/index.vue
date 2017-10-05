@@ -9,7 +9,11 @@
 
             <div class="col-sm-9 padding-right">
                 <!-- main content -->
-                <main-content :featured-products="data.featuredProducts"></main-content>
+                <main-content
+                    :featured-products="data.featuredProducts"
+                    :featured-categories="data.featuredCategories"
+                    :recommended-products="data.recommendedProducts"
+                ></main-content>
             </div>
         </div>
     </div>
@@ -27,6 +31,6 @@
         components: {
             LeftSidebar,
             MainContent,
-        }
+        },
     }
 </script>

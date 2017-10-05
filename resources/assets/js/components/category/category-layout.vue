@@ -32,6 +32,9 @@
 
 export default {
     props: ['product'],
+    mounted() {
+        console.log('this.product: ', this.product);
+    }
 }
 </script>
 

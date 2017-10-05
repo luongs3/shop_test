@@ -9,6 +9,7 @@ class Category extends Model
     	'name',
     	'sku',
         'ancestor_id',
+        'featured',
     ];
 
     public function products()
@@ -31,4 +32,8 @@ class Category extends Model
         return $this->hasMany(static::class, 'ancestor_id');
     }
 
+    public function scopeIsFeatured($query)
+    {
+        return $query->where('featured', 1);
+    }
 }

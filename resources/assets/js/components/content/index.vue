@@ -1,27 +1,26 @@
 <template>
     <div id="main-content">
-        <featured-products :featured-products="featuredProducts"></featured-products>
+        <featured-products :products="featuredProducts"></featured-products>
+        <featured-categories :featured-categories="featuredCategories"></featured-categories>
+        <product-slider :products="recommendedProducts"></product-slider>
     </div>
 </template>
 
 <script>
-    import FeaturedProducts from 'comps/product/product-feature'
+    import FeaturedProducts from 'comps/product/grid6'
+    import FeaturedCategories from 'comps/category/category-feature'
+    import ProductSlider from 'comps/product/slider'
 
     export default {
-        props: {
-            featuredProducts: {
-                type: Array,
-                // validator (value) {
-                //     return value.length > 0
-                // }
-            },
-        },
+        props: [
+            'featuredProducts',
+            'featuredCategories',
+            'recommendedProducts',
+        ],
         components: {
             FeaturedProducts,
-        },
-
-        updated() {
-            console.log('content: featuredProducts: ', this.featuredProducts);
+            FeaturedCategories,
+            ProductSlider,
         }
     }
 </script>
