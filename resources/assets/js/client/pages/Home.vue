@@ -1,50 +1,49 @@
 <template>
     <div id="home">
+        <my-header></my-header>
         <slider></slider>
-        <main-section :data="data"></main-section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <!-- left sidebar -->
+                        <left-sidebar :categories="categories"></left-sidebar>
+                    </div>
+
+                    <div class="col-sm-9 padding-right">
+                        <!-- main content -->
+                        <router-view></router-view>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <my-footer></my-footer>
     </div>
 </template>
 
 <script>
-import Slider from 'comps/slider';
-import MainSection from 'comps/main-section';
-import {getCategories, getFeaturedCategories} from 'api/category';
-import {getFeaturedProducts, getRecommendedProducts} from 'api/product';
+import MyHeader from 'comps/header';
+import Slider from 'comps/slider'
+import LeftSidebar from 'comps/left-sidebar'
+import MyFooter from 'comps/footer'
+import {getCategories} from 'api/category'
 
 export default {
     data() {
         return {
-            data: {
-                categories: null,
-                featuredProducts: null,
-                featuredCategories: null,
-                recommendedProducts: null,
-            },
+            categories: null,
         }
     },
     components: {
+        MyHeader,
         Slider,
-        MainSection,
-    },
-    methods: {
-        fetchAll (params) {
-            getCategories(params).then(({ data }) => {
-                this.data.categories = data.categories
-            })
-            getFeaturedProducts(params).then(({ data }) => {
-                this.data.featuredProducts = data.featuredProducts
-            })
-            getRecommendedProducts(params).then(({ data }) => {
-                this.data.recommendedProducts = data.recommendedProducts
-            })
-            getFeaturedCategories(params).then(({ data }) => {
-                this.data.featuredCategories = data.featuredCategories
-            })
-        },
+        MyFooter,
+        LeftSidebar,
     },
     created () {
-        this.fetchAll(this.$route.query)
-        console.log('this.data: ', this.data);
+        getCategories(this.$route.query).then(({ data }) => {
+            this.categories = data.categories
+        })
     }
 }
 </script>

@@ -9,9 +9,9 @@
 </template>
 
 <script>
-    import HeaderTop from 'comps/header/HeaderTop';
-    import HeaderMiddle from 'comps/header/HeaderMiddle';
-    import HeaderBottom from 'comps/header/HeaderBottom';
+    import HeaderTop from 'comps/header/header-top'
+    import HeaderMiddle from 'comps/header/header-middle'
+    import HeaderBottom from 'comps/header/header-bottom'
 
     export default {
         components: {

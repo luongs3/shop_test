@@ -1,5 +1,5 @@
 <template>
-    <div id="product-layout" class="product-image-wrapper">
+    <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
                 <a :href="`products/${product.sku}`"><img src="images/home/product1.jpg" alt="" /></a>
