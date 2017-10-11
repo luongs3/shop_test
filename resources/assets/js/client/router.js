@@ -7,7 +7,7 @@ import Product from 'client/pages/Product'
 import ErrorDrone from 'client/pages/Error'
 
 export default new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [
         {
             path: '/404',
