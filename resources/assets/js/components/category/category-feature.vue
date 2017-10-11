@@ -3,7 +3,7 @@
     <div class="col-sm-12">
         <ul class="nav nav-tabs">
             <li v-for="(featuredCategory, index) in featuredCategories" @click="changeSelectedCategory(featuredCategory)" :class="isActive(index)">
-                <a :href="`#${featuredCategory.sku}`" data-toggle="tab">{{featuredCategory.name}}</a>
+                <router-link :to="`#${featuredCategory.sku}`" data-toggle="tab">{{featuredCategory.name}}</router-link>
             </li>
         </ul>
     </div>
