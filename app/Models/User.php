@@ -30,6 +30,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function getAvatarAttribute($value) {
+        if (is_null($value)) {
+            return config('common.default_avatar');
+        }
+
+        return $value;
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);

@@ -29,9 +29,10 @@ mix.js('resources/assets/js/client/client.js', 'public/js/client.js')
                 admin: path.join(__dirname, 'resources/assets/js/admin'),
                 client: path.join(__dirname, 'resources/assets/js/client'),
                 api: path.join(__dirname, 'resources/assets/js/api'),
+                // store: path.join(__dirname, 'resources/assets/js/store'),
             },
             modules: [
-                path.resolve(__dirname, 'node_modules')
+                path.resolve(__dirname, 'node_modules'),
             ]
         }
     })

@@ -14,7 +14,10 @@
 							<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 							<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-							<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+							<li v-if="!user"><router-link :to="{name: 'login'}"><i class="fa fa-lock"></i> Login</router-link></li>
+							<li v-if="!user"><router-link :to="{name: 'register'}"><i class="fa fa-lock"></i> Register</router-link></li>
+							<li v-if="user"><a href="#" @click="logout"><i class="fa fa-lock"></i>Logout</a></li>
+							<li v-if="user">{{ user.name }}</li>
 						</ul>
 					</div>
 				</div>
@@ -24,6 +27,20 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex'
+import { logout } from 'api/auth'
+
     export default {
+    	computed: {
+    		...mapState('auth', ['user']),
+    		...mapGetters('auth', ['authenticated', 'roles', 'userId', 'isUser'])
+    	},
+    	methods: {
+            logout () {
+                logout().then(() => {
+                    window.location.reload()
+                })
+            },
+    	}
     }
 </script>

@@ -11,3 +11,11 @@ body {
 .badge a i.fa-plus {
     color: #fff;
 }
+
+.input.is-danger, .textarea.is-danger {
+	border: solid 1px $danger;
+}
+
+.help.is-danger {
+	color: $danger;
+}

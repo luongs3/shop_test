@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VeeValidate from 'vee-validate'
+import Vuex from 'vuex'
 
 window._ = require('lodash');
 
@@ -27,7 +29,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
-
+Vue.use(VeeValidate);
+Vue.use(Vuex)
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just
