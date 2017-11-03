@@ -8,3 +8,13 @@
 
 // Font-awesome
 @import "~font-awesome/scss/font-awesome.scss";
+
+.modal-header i {
+    margin-left: 106px;
+    color: black;
+}
+
+.modal-header i:hover {
+  cursor: pointer;
+  opacity: 0.7
+}

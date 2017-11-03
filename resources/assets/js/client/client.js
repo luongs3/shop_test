@@ -8,7 +8,7 @@ import store from 'assets/store/store'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-store.dispatch('auth/fetchMe')
+// store.dispatch('auth/fetchMe')
 
 new Vue({
     el: '#app',

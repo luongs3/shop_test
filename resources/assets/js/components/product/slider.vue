@@ -51,10 +51,6 @@ export default {
         productPart2() {
             return this.products ? this.products.slice(3): null
         },
-
-    },
-    mounted() {
-        console.log('slider');
-    },
+    }
 }
 </script>

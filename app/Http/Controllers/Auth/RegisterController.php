@@ -81,7 +81,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
-            ?: null;
+            ?: ['user' => null];
     }
 
     protected function registered(Request $request, $user)

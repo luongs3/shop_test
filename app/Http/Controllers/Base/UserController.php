@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function getMe()
     {
-        return auth()->user() ? : response(null, 401);
+        return auth()->user() ? : response(['user' => null]);
     }
         
 }

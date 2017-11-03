@@ -4,8 +4,7 @@ import { getMe } from 'api/user'
 export default {
     namespaced: true,
     state: {
-        user: null,
-        guest: true
+        user: window.user,
     },
     mutations: {
         PRELOAD (state, user) {
@@ -14,11 +13,6 @@ export default {
 
         SET_USER (state, user) {
             state.user = user
-            console.log('SET_USER', state.user)
-        },
-
-        SET_GUEST (state, guest) {
-            state.guest = Boolean(guest)
         },
 
         SET_POSTS_COUNT (state, posts_count) {
@@ -33,7 +27,12 @@ export default {
     },
     actions: {
         register ({ commit, dispatch }, data) {
-            return register(data).then(response => response.data)
+            return register(data).then(({data}) => {
+                localStorage.setItem('user', JSON.stringify(data.user))
+                commit('SET_USER', data.user)
+
+                return data
+            })
             .catch(error => {
                 if (error.response && error.response.data) {
                     throw error.response.data
@@ -42,38 +41,57 @@ export default {
                 }
             })
         },
+
+        login ({ commit, dispatch }, data) {
+            return axios.post('/login', data)
+                .then(({data}) => {
+                    localStorage.setItem('user', JSON.stringify(data.user))
+                    commit('SET_USER', data.user)
+
+                    return data
+                })
+                .catch(error => {
+                    if (error.response && error.response.data) {
+                        throw error.response.data
+                    } else {
+                        throw error.message
+                    }
+                })
+        },
+
+        logout ({ commit, dispatch }) {
+            localStorage.removeItem('user')
+            commit('SET_USER', null)
+
+            return axios.post('/logout')
+        },
         
         fetchMe ({ commit, state }) {
             try {
                 getMe()
                     .then(({data}) => {
-                        commit('SET_USER', data)
-                        commit('SET_GUEST', false)
+                        if (data.user) {
+                            localStorage.setItem('user', JSON.stringify(data.user))
+                            commit('SET_USER', data.user)
+                        } else {
+                            localStorage.setItem('user', null)
+                            commit('SET_USER', null)
+                        }
                         
                         return data
                     })
                     .catch(() => null)
             } catch (error) {
                 commit('SET_USER', null)
-                commit('SET_GUEST', true)
                 return null
             }
         },
-        changeAuthenticationState ({ commit, dispatch }, { guest = true, user = null } = {}) {
+        changeAuthenticationState ({ commit, dispatch }, { user = null } = {}) {
             if (user !== null) {
                 commit('SET_USER', user)
-                commit('SET_GUEST', false)
             } else {
-                commit('SET_GUEST', guest)
                 dispatch('fetchUser')
             }
-        },
-        login ({ commit, dispatch }, data) {
-            return axios.post('/login', data).then(response => response)
-        },
-
-        logout ({ commit, dispatch }) {
-            return axios.post('/logout')
         },
 
         fetchLastSeen ({ state, commit }) {

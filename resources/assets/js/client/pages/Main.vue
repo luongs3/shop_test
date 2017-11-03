@@ -40,7 +40,6 @@ export default {
     },
     created () {
         this.fetchAll(this.$route.query)
-        console.log('this.data: ', this.data);
     }
 }
 </script>

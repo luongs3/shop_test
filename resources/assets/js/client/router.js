@@ -42,8 +42,6 @@ export default new Router({
                     name: 'login',
                     component: Login,
                     beforeEnter(to, from, next) {
-                        console.log('beforeEnter: ', store.getters["auth/authenticated"])
-                        console.log('beforeEnter: ', store.state.auth.user)
                         if (store.getters["auth/authenticated"]) {
                             this.$router.push('/')
                         }

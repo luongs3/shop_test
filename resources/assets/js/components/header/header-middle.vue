@@ -14,26 +14,38 @@
 							<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 							<li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 							<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-							<li v-if="!user"><router-link :to="{name: 'login'}"><i class="fa fa-lock"></i> Login</router-link></li>
+							<li v-if="!user">
+								<a href="#" id="show-modal" @click="showLoginModal = true"><i class="fa fa-lock"></i>Login</a>
+								<!-- <router-link :to="{name: 'login'}"><i class="fa fa-lock"></i> Login</router-link> -->
+							</li>
 							<li v-if="!user"><router-link :to="{name: 'register'}"><i class="fa fa-lock"></i> Register</router-link></li>
 							<li v-if="user"><a href="#" @click="logout"><i class="fa fa-lock"></i>Logout</a></li>
-							<li v-if="user">{{ user.name }}</li>
+							<li v-if="user"><a href="#">{{ user.name }}</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
+		 <login-modal v-if="showLoginModal" @close="showLoginModal = false" :showLoginModal="showLoginModal" />
 	</div><!--/header-middle-->
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import { logout } from 'api/auth'
+import LoginModal from 'comps/auth/login-form'
 
     export default {
+    	data() {
+    		return {
+    			showLoginModal: false,
+    		}
+    	},
+    	components: {
+    		LoginModal
+    	},
     	computed: {
     		...mapState('auth', ['user']),
-    		...mapGetters('auth', ['authenticated', 'roles', 'userId', 'isUser'])
     	},
     	methods: {
             logout () {
