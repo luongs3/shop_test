@@ -12,6 +12,7 @@ import store from 'assets/store/store'
 
 export default new Router({
     mode: 'hash',
+    // mode: 'history',
     routes: [
         {
             path: '/404',

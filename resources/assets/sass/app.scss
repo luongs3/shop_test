@@ -18,3 +18,8 @@
   cursor: pointer;
   opacity: 0.7
 }
+
+.item-list {
+    white-space: nowrap;
+    overflow: auto;
+}

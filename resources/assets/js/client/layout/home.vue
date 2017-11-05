@@ -41,7 +41,7 @@ export default {
         LeftSidebar,
     },
     created () {
-        getCategories(this.$route.query).then(({ data }) => {
+        getCategories().then(({ data }) => {
             this.categories = data.categories
         })
     }

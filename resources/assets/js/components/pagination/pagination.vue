@@ -1,33 +1,37 @@
 <template>
-    <ul class="pagination" v-if="hasPages">
-    	<!-- previous item -->
-        <li class="page-item" v-if="currentPage == 1">
-            <a class="disabled"><i aria-hidden="true" class="fa fa-angle-left"></i></a>
-        </li>
-        <li class="page-item" v-else>
-            <router-link :to="to(currentPage - 1)" rel="prev" exact><i aria-hidden="true" class="fa fa-angle-left"></i></router-link>
-        </li>
-		
-		<!-- numbers -->
-        <li v-for="link in this.pages">
-            <router-link
-                v-if="link !== '...'"
-                :to="to(link)"
-                active-class="active" exact
-            >
-                {{ link }}
-            </router-link>
-            <a v-else class="disabled">...</a>
-        </li>
+    <div class="pagination-wrapper">
+        <ul class="pagination" v-if="hasPages">
+        	<!-- previous item -->
+            <li v-if="currentPage == 1" class="page-item">
+                <a class="disabled"><i aria-hidden="true" class="fa fa-angle-left"></i></a>
+            </li>
+            <li v-else class="page-item" >
+                <router-link :to="to(currentPage - 1)" rel="prev" exact>
+                    <i aria-hidden="true" class="fa fa-angle-left"></i>
+                </router-link>
+            </li>
 
-		<!-- next item -->
-        <li class="page-item" v-if="currentPage == lastPage">
-            <a class="disabled"><i aria-hidden="true" class="fa fa-angle-right"></i></a>
-        </li>
-        <li class="page-item" v-else>
-            <router-link :to="to(currentPage + 1)" rel="next" exact><i aria-hidden="true" class="fa fa-angle-right"></i></router-link>
-        </li>
-    </ul>
+    		<!-- numbers -->
+            <li v-for="link in this.pages">
+                <router-link
+                    v-if="link !== '...'"
+                    :to="to(link)"
+                    active-class="active" exact
+                >
+                    {{ link }}
+                </router-link>
+                <a v-else class="disabled">...</a>
+            </li>
+
+    		<!-- next item -->
+            <li v-if="currentPage == lastPage" class="page-item">
+                <a class="disabled"><i aria-hidden="true" class="fa fa-angle-right"></i></a>
+            </li>
+            <li v-else class="page-item">
+                <router-link :to="to(currentPage + 1)" rel="next" exact><i aria-hidden="true" class="fa fa-angle-right"></i></router-link>
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -162,11 +166,17 @@
             getFinish () {
                 return [this.lastPage - 1, this.lastPage]
             },
-        }
+        },
 
+        // mounted() {
+        //     console.log('this.pages', this.pages);
+        // },
     }
 </script>
 
 <style>
-
+.pagination-wrapper {
+    width: 100%;
+    text-align: center;
+}
 </style>

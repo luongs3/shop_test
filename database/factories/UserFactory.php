@@ -62,6 +62,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'sku' => $faker->unique()->slug(),
         'description' => $faker->text(),
         'status' => $faker->randomElement([1, 2, 3]), //1- on-sale, 2-run out of stock, 3-disable
+//        'category_id' => 1,
         'category_id' => function() {
             return factory(Category::class)->create()->id;
         },
